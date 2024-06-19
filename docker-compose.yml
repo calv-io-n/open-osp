@@ -20,7 +20,7 @@ services:
         - .:/code
         - mariadb-files:/var/lib/mysql
       networks:
-        - back-tier
+        - macrohealth
       deploy:
         resources:
           limits:
@@ -40,7 +40,7 @@ services:
         - ./volumes/chain.pem:/usr/local/tomcat/conf/chain.pem
         # Add other volumes to the volumes/ folder, and mount them via docker-compose.override.yml
       networks:
-        - back-tier
+        - macrohealth
       environment:
         TZ: America/Vancouver
         CATALINA_OPTS: -Djava.awt.headless=true
@@ -61,7 +61,7 @@ services:
         - ./volumes/expedius:/var/lib/expedius
         - ./volumes/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml
       networks:
-        - back-tier
+        - macrohealth
       environment:
         TZ: America/Vancouver
         JAVA_OPTS: -Dlog4j2.formatMsgNoLookups=true
@@ -80,7 +80,7 @@ services:
         - ./volumes/ssl.crt:/usr/local/tomcat/conf/ssl.crt
         - ./volumes/ssl.key:/usr/local/tomcat/conf/ssl.key
       networks:
-        - back-tier
+        - macrohealth
       env_file:
         - local.env
       environment:
@@ -98,5 +98,5 @@ volumes:
     driver: local
 
 networks:
-  back-tier:
-    driver: bridge
+  macrohealth:
+    external: true

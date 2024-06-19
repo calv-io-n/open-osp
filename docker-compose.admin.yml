@@ -13,13 +13,13 @@ services:
         - local.env
       restart: always
       networks:
-        - back-tier
+        - macrohealth
 
     nginx:
       restart: 'always'
       image: nginx:latest
       networks:
-        - back-tier
+        - macrohealth
       volumes:
         - ./static:/static
         - ./conf/ssl.crt:/ssl/ssl.crt
@@ -37,7 +37,7 @@ services:
         - ./volumes/ssl.crt:/usr/local/tomcat/conf/ssl.crt
         - ./volumes/ssl.key:/usr/local/tomcat/conf/ssl.key
       networks:
-        - back-tier
+        - macrohealth
       env_file:
         - local.env
 
@@ -50,9 +50,9 @@ services:
 #        - MYSQL_USER=
 #        - MYSQL_PASSWORD=
       networks:
-        - back-tier
+        - macrohealth
 
 networks:
-  back-tier:
-    driver: bridge
+  macrohealth:
+    external: true
 

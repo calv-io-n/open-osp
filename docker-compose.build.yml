@@ -16,9 +16,9 @@ services:
         - JOB_NAME
         - BUILD_NUMBER
       networks:
-        - back-tier
+        - macrohealth
       
 networks:
-  back-tier:
-    driver: bridge
+  macrohealth:
+    external: true
 
